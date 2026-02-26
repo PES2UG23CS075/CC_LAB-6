@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Build Backend Image') {
             steps {
-                sh 'docker build -t backend-app CC_LAB-6/backend'
+                sh 'docker build -t backend-app backend'
             }
         }
         stage('Deploy Backend Containers') {
@@ -27,7 +27,7 @@ pipeline {
                 docker rm -f nginx-lb || true
                 docker run -d --name nginx-lb -p 80:80 nginx
                 sleep 2
-                docker cp CC_LAB-6/nginx/default.conf nginx-lb:/etc/nginx/conf.d/default.conf
+                docker cp nginx/default.conf nginx-lb:/etc/nginx/conf.d/default.conf
                 docker exec nginx-lb nginx -s reload
                 '''
             }
