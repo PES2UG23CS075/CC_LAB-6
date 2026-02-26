@@ -1,5 +1,4 @@
-FROM debian:bullseye-slim
-RUN apt-get update && apt-get install -y g++ && rm -rf /var/lib/apt/lists/*
+FROM gcc:latest
 WORKDIR /app
 COPY app.cpp .
 RUN g++ app.cpp -o app
